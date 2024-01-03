@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class TokenAuthenticate
 {
+    /**
+     * Get the path the user should be redirected to when they are not authenticated.
+     */
     public function handle(Request $request, Closure $next): Response
     {
         $token=$request->cookie('token');
