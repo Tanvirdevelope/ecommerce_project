@@ -79,4 +79,10 @@ class ProductController extends Controller
         );
         return ResponseHelper::Out('success',$data,200);
     }
+
+    public function RemoveWishList(Request $request):JsonResponse{
+        $user_id=$request->header('id');
+        $data=ProductWish::where(['user_id' => $user_id,'product_id'=>$request->product_id])->delete();
+        return ResponseHelper::Out('success',$data,200);
+    }
 }
