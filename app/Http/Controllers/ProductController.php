@@ -9,6 +9,7 @@ use App\Models\ProductSlider;
 use App\Helper\ResponseHelper;
 use App\Models\ProductDetails;
 use Illuminate\Http\JsonResponse;
+use App\Models\CustomerProfile;
 
 class ProductController extends Controller
 {
