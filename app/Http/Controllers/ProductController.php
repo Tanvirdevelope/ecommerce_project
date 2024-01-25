@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductWish;
 use Illuminate\Http\Request;
 use App\Models\ProductReview;
 use App\Models\ProductSlider;
 use App\Helper\ResponseHelper;
 use App\Models\ProductDetails;
-use Illuminate\Http\JsonResponse;
 use App\Models\CustomerProfile;
+use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
@@ -81,6 +82,7 @@ class ProductController extends Controller
         return ResponseHelper::Out('success',$data,200);
     }
 
+    
     public function RemoveWishList(Request $request):JsonResponse{
         $user_id=$request->header('id');
         $data=ProductWish::where(['user_id' => $user_id,'product_id'=>$request->product_id])->delete();
