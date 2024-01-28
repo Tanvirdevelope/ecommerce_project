@@ -11,19 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('invoice_products', function (Blueprint $table) {
             $table->id();
-            $table->string('total',50);
-            $table->string('vat',50);
-            $table->string('payable',50);
-            $table->string('cus_details',500);
-            $table->string('ship_details',500);
-            $table->string('tran_id',100);
-            $table->string('val_id',100)->default(0);
-            $table->enum('delivery_status',['Pending','Processing','Completed']);
-            $table->string('payment_status');
 
+            $table->unsignedBigInteger('invoice_id');
+            $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
+
+            $table->string('qty',50);
+            $table->string('sale_price',50);
+
+
+            $table->foreign('invoice_id')->references('id')->on('invoices')
+                ->cascadeOnUpdate()->restrictOnDelete();
+
+            $table->foreign('product_id')->references('id')->on('products')
+                ->cascadeOnUpdate()->restrictOnDelete();
+
+
             $table->foreign('user_id')->references('id')->on('users')
                 ->cascadeOnUpdate()->restrictOnDelete();
 
@@ -38,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('invoice_products');
     }
 };
