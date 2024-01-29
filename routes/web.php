@@ -34,6 +34,7 @@ Route::get('/UserLogin/{UserEmail}', [UserController::class, 'UserLogin']);
 Route::get('/VerifyLogin/{UserEmail}/{OTP}', [UserController::class, 'VerifyLogin']);
 Route::get('/logout',[UserController::class,'UserLogout']);
 
+
 // User Profile
 Route::post('/CreateProfile', [ProfileController::class, 'CreateProfile'])->middleware([TokenAuthenticate::class]);
 Route::get('/ReadProfile', [ProfileController::class, 'ReadProfile'])->middleware([TokenAuthenticate::class]);
@@ -41,18 +42,26 @@ Route::get('/ReadProfile', [ProfileController::class, 'ReadProfile'])->middlewar
 // Product Review
 Route::post('/CreateProductReview', [ProductController::class, 'CreateProductReview'])->middleware([TokenAuthenticate::class]);
 
+
 // Product Wish
 Route::get('/ProductWishList', [ProductController::class, 'ProductWishList'])->middleware([TokenAuthenticate::class]);
 Route::get('/CreateWishList/{product_id}', [ProductController::class, 'CreateWishList'])->middleware([TokenAuthenticate::class]);
 Route::get('/RemoveWishList/{product_id}', [ProductController::class, 'RemoveWishList'])->middleware([TokenAuthenticate::class]);
+
 
 // Product Cart
 Route::post('/CreateCartList', [ProductController::class, 'CreateCartList'])->middleware([TokenAuthenticate::class]);
 Route::get('/CartList', [ProductController::class, 'CartList'])->middleware([TokenAuthenticate::class]);
 Route::get('/DeleteCartList/{product_id}', [ProductController::class, 'DeleteCartList'])->middleware([TokenAuthenticate::class]);
 
+
 // Invoice and payment
 Route::get("/InvoiceCreate",[InvoiceController::class,'InvoiceCreate'])->middleware([TokenAuthenticate::class]);
 Route::get("/InvoiceList",[InvoiceController::class,'InvoiceList'])->middleware([TokenAuthenticate::class]);
 Route::get("/InvoiceProductList/{invoice_id}",[InvoiceController::class,'InvoiceProductList'])->middleware([TokenAuthenticate::class]);
 
+
+//payment
+Route::post("/PaymentSuccess",[InvoiceController::class,'PaymentSuccess']);
+Route::post("/PaymentCancel",[InvoiceController::class,'PaymentCancel']);
+Route::post("/PaymentFail",[InvoiceController::class,'PaymentFail']);
