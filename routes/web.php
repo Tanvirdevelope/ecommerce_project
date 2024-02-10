@@ -18,6 +18,11 @@ Route::get('/by-category', [CategoryController::class, 'ByCategoryPage']);
 Route::get('/by-brand', [BrandController::class, 'ByBrandPage']);
 Route::get('/policy', [PolicyController::class, 'PolicyPage']);
 Route::get('/details', [ProductController::class, 'Details']);
+Route::get('/login', [UserController::class, 'LoginPage']);
+Route::get('/verify', [UserController::class, 'VerifyPage']);
+Route::get('/wish', [ProductController::class, 'WishList']);
+Route::get('/cart', [ProductController::class, 'CartListPage']);
+Route::get('/profile', [ProfileController::class, 'ProfilePage']);
 // Brand List
 Route::get('/BrandList', [BrandController::class, 'BrandList']);
 // Category List
